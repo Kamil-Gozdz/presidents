@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("presidents")
@@ -16,7 +17,7 @@ public class PresidentsController {
     private final PresidentService presidentService;
 
     @GetMapping("all")
-    public List<PresidentDto> getAll(){
+    public List<PresidentDto> getAll() {
         return presidentService.getAllPresidents();
     }
 
@@ -29,32 +30,29 @@ public class PresidentsController {
     public PresidentDto updateWithBodyOnly(@RequestBody PresidentDto presidentDto) {
         return presidentService.updatePresident(presidentDto);
     }
+
+    //
 //
-//
-//    @PatchMapping("update")
-//    public String updatePartial(@RequestBody President president) {
-//        President p = PresidentsDB.presidentRepository.get(Math.toIntExact(president.getId()));
-//        if (president.getName() != null) {
-//            p.setName(president.getName());
-//        }
-//        if (president.getSurname() != null) {
-//            p.setSurname(president.getSurname());
-//        }
-//        if (president.getTermFrom() != null) {
-//            p.setTermFrom(president.getTermFrom());
-//        }
-//        if (president.getTermTo() != null) {
-//            p.setTermTo(president.getTermTo());
-//        }
-//        if (president.getPoliticalParty() != null) {
-//            p.setPoliticalParty(president.getPoliticalParty());
-//        }
-//        return "Updated";
-//    }
-//
-//    @DeleteMapping("delete/{id}")
-//    public String deleteByIndex(@PathVariable int id){
-//        PresidentsDB.presidentRepository.remove(id);
-//        return "deleted";
-//    }
+    @PatchMapping("update")
+    public PresidentDto updatePartial(@RequestBody PresidentDto presidentDto) {
+
+        return presidentService.updatePresidentPartial(presidentDto);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteByIndex(@PathVariable long id) {
+        presidentService.deletePresident(id);
+
+    }
+
+    @GetMapping("find-by-name/{name}")
+    public Set<PresidentDto> findPresidentByName(@PathVariable String name){
+        return presidentService.findPresidentsByName(name);
+    }
+
+    @GetMapping("find-by-party/{party}")
+    public Set<PresidentDto> findPresidentByPoliticalParty(@PathVariable String party){
+        return presidentService.findPresidentsByPoliticalParty(party);
+    }
+
 }
