@@ -4,6 +4,8 @@ package com.presidents.controller;
 import com.presidents.model.dto.PresidentDto;
 import com.presidents.service.president.PresidentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,12 +32,14 @@ public class PresidentsController {
     public PresidentDto updateWithBodyOnly(@RequestBody PresidentDto presidentDto) {
         return presidentService.updatePresident(presidentDto);
     }
+    // Tak można ale się nie robi bo są globalne annotacje
+//    @ExceptionHandler({RuntimeException.class, IllegalAccessError.class})
+//    public final ResponseEntity<Object> handleException(Exception ex){
+//        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//    };
 
-    //
-//
     @PatchMapping("update")
     public PresidentDto updatePartial(@RequestBody PresidentDto presidentDto) {
-
         return presidentService.updatePresidentPartial(presidentDto);
     }
 

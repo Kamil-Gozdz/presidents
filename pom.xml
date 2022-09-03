@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>presidents</name>
     <description>presidents</description>
+    <packaging>war</packaging>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -49,9 +50,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>presidents</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -67,5 +73,15 @@
             </plugin>
         </plugins>
     </build>
-
+<profiles>
+    <profile>
+        <id>local</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+    </profile>
+    <profile>
+        <id>develop</id>
+    </profile>
+</profiles>
 </project>
