@@ -4,10 +4,9 @@ package com.presidents.controller;
 import com.presidents.model.dto.PresidentDto;
 import com.presidents.service.president.PresidentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -24,12 +23,12 @@ public class PresidentsController {
     }
 
     @PostMapping("save")
-    public PresidentDto save(@RequestBody PresidentDto presidentDto) {
+    public PresidentDto save(@Valid @RequestBody PresidentDto presidentDto) {
         return presidentService.savePresident(presidentDto);
     }
 
     @PutMapping("update")
-    public PresidentDto updateWithBodyOnly(@RequestBody PresidentDto presidentDto) {
+    public PresidentDto updateWithBodyOnly(@Valid @RequestBody PresidentDto presidentDto) {
         return presidentService.updatePresident(presidentDto);
     }
     // Tak można ale się nie robi bo są globalne annotacje

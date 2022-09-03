@@ -3,6 +3,7 @@ package com.presidents.service.president;
 import com.presidents.model.dto.PresidentDto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface PresidentService {
