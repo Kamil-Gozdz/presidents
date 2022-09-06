@@ -4,6 +4,7 @@ package com.presidents.controller;
 import com.presidents.model.dto.PresidentDto;
 import com.presidents.service.president.PresidentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ public class PresidentsController {
         return presidentService.getAllPresidents();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("save")
     public PresidentDto save(@Valid @RequestBody PresidentDto presidentDto) {
         return presidentService.savePresident(presidentDto);
@@ -49,12 +51,12 @@ public class PresidentsController {
     }
 
     @GetMapping("find-by-name/{name}")
-    public Set<PresidentDto> findPresidentByName(@PathVariable String name){
+    public Set<PresidentDto> findPresidentByName(@PathVariable String name) {
         return presidentService.findPresidentsByName(name);
     }
 
     @GetMapping("find-by-party/{party}")
-    public Set<PresidentDto> findPresidentByPoliticalParty(@PathVariable String party){
+    public Set<PresidentDto> findPresidentByPoliticalParty(@PathVariable String party) {
         return presidentService.findPresidentsByPoliticalParty(party);
     }
 
