@@ -12,7 +12,7 @@ import java.util.Set;
 @Repository //mozna oznaczać, nie trzeba
 public interface PresidentsRepository extends JpaRepository<President,Long> {
 
-   Set<President> findPresidentsByName(String name);
+   Set<President> findPresidentsByName(@Param("name") String name);
   @Query("SELECT p FROM President p where p.politicalParty = :party")
    Set<President> findPresidentsByPoliticalParty(@Param("party") String party);
 

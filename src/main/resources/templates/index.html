@@ -10,7 +10,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img th:src="@{flag-usa.png}" width="120" height="80" alt="USA flag"></a>
+            <a class="navbar-brand" href="#"><img th:src="@{flag-usa.png}" width="120" height="80" alt="USA flag" src=""></a>
             <a class="navbar-brand" href="#">USA PRESIDENTS APPLICATION</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                         <a class="nav-link" th:href="@{/main/?form=2}">Delete</a>
                     </li>
                     <li class="nav navbar-nav">
-                        <a class="nav-link" th:href="@{/main/?form=3}">Update all data</a>
+                        <a class="nav-link" th:href="@{/main/?form=3}">All data update</a>
                     </li>
                     <li class="nav navbar-nav">
                         <a class="nav-link" th:href="@{/main/?form=4}">Partial data update</a>
@@ -69,7 +69,55 @@
                 <label for="id">Please enter ID of President to delete</label>
                 <input id="id" placeholder="Enter ID" required type="number" th:field="*{id}" class="form-control ">
             </div>
-            <button class="btn btn-primary" type="submit" name="_method">Delete</button>
+            <button class="btn btn-danger" type="submit" name="_method">Delete</button>
+        </form>
+    </div>
+    <div class="mb-3" th:if="${form} == 3">
+        <form class="col card p-3 mb-5" action="#" th:method="put" th:action="@{/main/update-all-data}" th:object="${presidentDto}">
+            <div class="form-group">
+                <label for="update-id">Id</label>
+                <input id="update-id" placeholder="Enter id" required type="text" th:field="*{id}" class="form-control">
+                <label for="update-name">Name</label>
+                <input id="update-name" placeholder="Enter name" required type="text" th:field="*{name}" class="form-control">
+                <label for="update-surname">Surname</label>
+                <input id="update-surname" placeholder="Enter surname" required type="text" th:field="*{surname}"
+                       class="form-control">
+                <label for="update-termFrom">Term From</label>
+                <input id="update-termFrom" placeholder="Pattern: yyyy-mm-dd hh:mm:ss" required type="text"
+                       th:field="*{termFrom}"
+                       class="form-control">
+                <label for="update-termTo">Term To</label>
+                <input id="update-termTo" placeholder="Pattern: yyyy-mm-dd hh:mm:ss" required type="text" th:field="*{termTo}"
+                       class="form-control">
+                <label for="update-politicalParty">Political Party</label>
+                <input id="update-politicalParty" placeholder="Enter politicalParty" required type="text"
+                       th:field="*{politicalParty}" class="form-control">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Update President">
+        </form>
+    </div>
+    <div class="mb-3" th:if="${form} == 4">
+        <form class="col card p-3 mb-5" action="#" th:method="patch" th:action="@{/main/update-part-data}" th:object="${presidentDto}">
+            <div class="form-group">
+                <label for="update-part-id">Id</label>
+                <input id="update-part-id" placeholder="Enter id" required type="text" th:field="*{id}" class="form-control">
+                <label for="update-part-name">Name</label>
+                <input id="update-part-name" placeholder="Enter name" required type="text" th:field="*{name}" class="form-control">
+                <label for="update-part-surname">Surname</label>
+                <input id="update-part-surname" placeholder="Enter surname" required type="text" th:field="*{surname}"
+                       class="form-control">
+                <label for="update-part-termFrom">Term From</label>
+                <input id="update-part-termFrom" placeholder="Pattern: yyyy-mm-dd hh:mm:ss" required type="text"
+                       th:field="*{termFrom}"
+                       class="form-control">
+                <label for="update-part-termTo">Term To</label>
+                <input id="update-part-termTo" placeholder="Pattern: yyyy-mm-dd hh:mm:ss" required type="text" th:field="*{termTo}"
+                       class="form-control">
+                <label for="update-part-politicalParty">Political Party</label>
+                <input id="update-part-politicalParty" placeholder="Enter politicalParty" required type="text"
+                       th:field="*{politicalParty}" class="form-control">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Edit President">
         </form>
     </div>
 
